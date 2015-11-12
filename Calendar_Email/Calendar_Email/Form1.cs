@@ -23,6 +23,7 @@ namespace Calendar_Email
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CalendarEmail.accdb;
 Persist Security Info=False;";  //@ take whole thing as a string.
+            this.FormClosed += new FormClosedEventHandler(Form1_FormClosed);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,6 +37,23 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             catch (Exception ex)
             {
                 MessageBox.Show("Error " + ex);
+            }
+        }
+        
+        //process when click "X" button to close the Form
+        void Form1_FormClosed(Object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+            if (this.DialogResult == DialogResult.Cancel)
+            {
+                switch (MessageBox.Show(this, "Are you sure?", "Do you want to..?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        Application.Exit();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -59,7 +77,7 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 }
                 if(count == 1)
                 {
-                    MessageBox.Show("Username and Password are correct");
+                    //MessageBox.Show("Username and Password are correct");
                     connection.Close();
                     connection.Dispose();
                     //hide the current form
@@ -101,20 +119,6 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             //show Form3
             f3.ShowDialog();
         }
-        private void Form1_FormClosing(Object sender, FormClosedEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
-            if(this.DialogResult == DialogResult.Cancel)
-            {
-                switch(MessageBox.Show(this, "Are you sure?", "Do you want to close this window?", MessageBoxButtons.YesNo,MessageBoxIcon.Question))
-                {
-                    case DialogResult.No:
-                        Application.Exit();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+
     }
 }

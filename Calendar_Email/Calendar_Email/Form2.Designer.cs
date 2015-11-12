@@ -48,6 +48,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bOpenAttachmentDialog = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.atchName = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +135,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.atchName);
+            this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.btn_EmailSend);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
@@ -152,7 +156,7 @@
             // 
             // btn_EmailSend
             // 
-            this.btn_EmailSend.Location = new System.Drawing.Point(144, 317);
+            this.btn_EmailSend.Location = new System.Drawing.Point(144, 340);
             this.btn_EmailSend.Name = "btn_EmailSend";
             this.btn_EmailSend.Size = new System.Drawing.Size(89, 27);
             this.btn_EmailSend.TabIndex = 9;
@@ -235,6 +239,24 @@
             this.textBox2.Size = new System.Drawing.Size(336, 128);
             this.textBox2.TabIndex = 2;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(25, 321);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(317, 17);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "NOTE: Size of the file can\'t be bigher than 16MB!";
+            // 
+            // atchName
+            // 
+            this.atchName.AutoSize = true;
+            this.atchName.Location = new System.Drawing.Point(127, 294);
+            this.atchName.Name = "atchName";
+            this.atchName.Size = new System.Drawing.Size(0, 17);
+            this.atchName.TabIndex = 11;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -279,6 +301,8 @@
         private System.Windows.Forms.TextBox tb_EmailTo_Show;
         private System.Windows.Forms.TextBox tb_EmailFrom_Show;
         private System.Windows.Forms.Button btn_EmailSend;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label atchName;
 
     }
 }

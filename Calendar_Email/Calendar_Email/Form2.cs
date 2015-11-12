@@ -20,14 +20,22 @@ namespace Calendar_Email
         String iPassWord = "";
         String iMailFrom = "zhouhao15917@gmail.com"; //default
         String iMailTo = "zhouhao15917@gmail.com"; //default
-
+        
+        //Create the connection with database
         private OleDbConnection connection = new OleDbConnection();
+        
+        //Start building up email system
+        MailMessage mail = new MailMessage();
+        //set up email server. For now it's for gmail(smtp). TODO: provide several options.
+        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
 
         public Form2()
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CalendarEmail.accdb;
 Persist Security Info=False;";  //@ take whole thing as a string.
+            this.FormClosed += new FormClosedEventHandler(Form2_FormClosed);
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -51,7 +59,7 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 }
                 // read data from OLEDB
                 //OleDbDataReader reader = command.ExecuteReader();
-                MessageBox.Show("");
+                MessageBox.Show("Data loaded from database to combBox correctly!!");
                 //clear all textBoxes
             }
             catch (Exception ex)
@@ -62,18 +70,39 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             {
                 connection.Close();
             }
+            //Initiate email client
+            //email_Init();
+            //Initiate email stmp server
+            //stmp_Init();
+            //initiate Email From textbox.
             tb_EmailFrom_Show.ReadOnly = true;
+        }
+        void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+            if (this.DialogResult == DialogResult.Cancel)
+            {
+                switch (MessageBox.Show(this, "Are you sure?", "Do you want to ...?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        Application.Exit();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void userInfoEnter_Click(object sender, EventArgs e)
         {
-            if ((cmb_EmailFrom.Text != "") && (textBoxPassword.Text != ""))
+            //account ID
+            iUserID = cmb_EmailFrom.Text;
+            //associated password
+            iPassWord = textBoxPassword.Text;
+
+            try
             {
-                //account ID
-                iUserID = cmb_EmailFrom.Text;
-                //associated password
-                iPassWord = textBoxPassword.Text;
-                //email sender is the same as user 
+                SmtpServer.Send(mail);                //email sender is the same as user 
                 // TODO: emailfrom can be different from user ID.
                 iMailFrom = iUserID;
                 //clear the comb box and textbox.
@@ -84,46 +113,25 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 tb_EmailFrom_Show.Text = iUserID;
                 tb_EmailFrom_Show.ReadOnly = true;
                 tb_EmailTo_Show.Text = iMailTo;
-
             }
-            else
-                MessageBox.Show("Before clicking\"Enter\", please enter ID and password!!");
+            catch 
+            {
+                MessageBox.Show("You account ID doesn't match the password!");
+                //clear the comb box and textbox.
+                cmb_EmailFrom.Text = "";
+                textBoxPassword.Clear();
+            }
         }
 
-        private void btn_EmailSend_Click(object sender, EventArgs e)
+        //clear user ID/password
+        private void userInfoCancel_Click(object sender, EventArgs e)
         {
-            String emailSubject = textBox1.Text;
-            String emailBody = textBox2.Text;
-            String userPassword = textBoxPassword.Text;
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-                mail.From = new MailAddress(iMailFrom);
-                mail.To.Add(iMailTo);
-                mail.Subject = emailSubject;
-                mail.Body = emailBody;
-
-                if (attachementNames != "")
-                {
-                    System.Net.Mail.Attachment attachment;
-                    attachment = new System.Net.Mail.Attachment(attachementNames);
-                    mail.Attachments.Add(attachment);
-                }
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(iUserID, iPassWord);
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-                MessageBox.Show("Email Sent");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            cmb_EmailFrom.Text = "";
+            textBoxPassword.Text = "";
         }
 
+       
+        //process the attachement along with the email
         private void bOpenAttachmentDialog_Click(object sender, EventArgs e)
         {
             // Create an instance of the open file dialog box.
@@ -140,15 +148,50 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 attachementNames = openFileDialog1.FileName;
+                atchName.Text = attachementNames.Substring(attachementNames.LastIndexOf('\\') + 1);
             }
             else if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
-                MessageBox.Show("Unfortunately, you have to select a file, \n if you want to attach file to your email");
+                MessageBox.Show("Unfortunately, you have to select a file, \n if you want to attach a file to your email");
+        }
+        
+        //initiate email
+        private void email_Init()
+        {
+            String emailSubject = textBox1.Text;
+            String emailBody = textBox2.Text;
+            mail.From = new MailAddress(iMailFrom);
+            mail.To.Add(iMailTo);
+            mail.Subject = emailSubject;
+            mail.Body = emailBody;
         }
 
-        private void userInfoCancel_Click(object sender, EventArgs e)
+        private void stmp_Init()
         {
-            cmb_EmailFrom.Text = "";
-            textBoxPassword.Text = "";
+//          String userPassword = textBoxPassword.Text;
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(iUserID, iPassWord);
+            SmtpServer.EnableSsl = true;
+        }
+
+        private void btn_EmailSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                stmp_Init();
+                email_Init();
+                if (attachementNames != "")
+                {
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment(attachementNames);
+                    mail.Attachments.Add(attachment);
+                }
+                SmtpServer.Send(mail);
+                MessageBox.Show("Congrats! Email Sent Sucessfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
