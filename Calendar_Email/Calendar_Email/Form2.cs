@@ -18,19 +18,16 @@ namespace Calendar_Email
         String attachementNames = "";
         String iUserID = "";
         String iPassWord = "";
-        String iMailFrom = "zhouhao15917@gmail.com";
-        String iMailTo = "zhouhao15917@gmail.com";
+        String iMailFrom = "zhouhao15917@gmail.com"; //default
+        String iMailTo = "zhouhao15917@gmail.com"; //default
 
         private OleDbConnection connection = new OleDbConnection();
 
         public Form2()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hzhou\Documents\Visual Studio 2013\Projects\Calendar_Email\Calendar_Email\CalendarEmail.accdb;
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CalendarEmail.accdb;
 Persist Security Info=False;";  //@ take whole thing as a string.
-            textBox1.ReadOnly = true;
-            textBox2.ReadOnly = true;
-            button2.Enabled = false;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -50,7 +47,7 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 OleDbDataReader reader = command.ExecuteReader();
                 while(reader.Read())
                 {
-                    emailFrom.Items.Add(reader["Email"].ToString());
+                    cmb_EmailFrom.Items.Add(reader["Email"].ToString());
                 }
                 // read data from OLEDB
                 //OleDbDataReader reader = command.ExecuteReader();
@@ -65,12 +62,38 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             {
                 connection.Close();
             }
+            tb_EmailFrom_Show.ReadOnly = true;
         }
-        private void button2_Click(object sender, EventArgs e)
+
+        private void userInfoEnter_Click(object sender, EventArgs e)
+        {
+            if ((cmb_EmailFrom.Text != "") && (textBoxPassword.Text != ""))
+            {
+                //account ID
+                iUserID = cmb_EmailFrom.Text;
+                //associated password
+                iPassWord = textBoxPassword.Text;
+                //email sender is the same as user 
+                // TODO: emailfrom can be different from user ID.
+                iMailFrom = iUserID;
+                //clear the comb box and textbox.
+                cmb_EmailFrom.Text = "";
+                textBoxPassword.Clear();
+                //to change the value of tb tb_EmailFrom_Show, we need to set readonly property as false.
+                tb_EmailFrom_Show.ReadOnly = false;
+                tb_EmailFrom_Show.Text = iUserID;
+                tb_EmailFrom_Show.ReadOnly = true;
+                tb_EmailTo_Show.Text = iMailTo;
+
+            }
+            else
+                MessageBox.Show("Before clicking\"Enter\", please enter ID and password!!");
+        }
+
+        private void btn_EmailSend_Click(object sender, EventArgs e)
         {
             String emailSubject = textBox1.Text;
             String emailBody = textBox2.Text;
-            String userID = textBoxIUserID.Text;
             String userPassword = textBoxPassword.Text;
             try
             {
@@ -113,7 +136,6 @@ Persist Security Info=False;";  //@ take whole thing as a string.
 
             //allow to select more than one file.
             openFileDialog1.Multiselect = true;
-
             //call the ShowDialog method to show the dialog box
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -123,30 +145,9 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 MessageBox.Show("Unfortunately, you have to select a file, \n if you want to attach file to your email");
         }
 
-        private void userInfoEnter_Click(object sender, EventArgs e)
-        {
-            if ((textBoxIUserID.Text != "") && (textBoxPassword.Text != ""))
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
-                button2.Enabled = true;
-                textBoxIUserID.ReadOnly = true;
-                textBoxPassword.ReadOnly = true;
-                userInfoEnter.Enabled = false;
-                userInfoCancel.Enabled = false;
-                textBoxIUserID.Text = "";
-                textBoxPassword.Text = "";
-                iUserID = textBoxIUserID.Text;
-                iPassWord = textBoxPassword.Text;
-
-            }
-            else
-                MessageBox.Show("Before clicking\"Enter\", please enter ID and password!!");
-        }
-
         private void userInfoCancel_Click(object sender, EventArgs e)
         {
-            textBoxIUserID.Text = "";
+            cmb_EmailFrom.Text = "";
             textBoxPassword.Text = "";
         }
     }

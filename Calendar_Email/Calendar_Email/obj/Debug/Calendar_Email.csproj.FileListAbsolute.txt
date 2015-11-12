@@ -11,3 +11,16 @@ c:\users\hzhou\documents\visual studio 2013\Projects\Calendar_Email\Calendar_Ema
 C:\Users\hzhou\Documents\Visual Studio 2013\Projects\Calendar_Email\Calendar_Email\bin\Debug\CalendarEmail.accdb
 C:\Users\hzhou\Documents\Visual Studio 2013\Projects\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form2.resources
 C:\Users\hzhou\Documents\Visual Studio 2013\Projects\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form3.resources
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\Calendar_Email.exe.config
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.exe
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.pdb
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\CalendarEmail.accdb
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\Calendar_Email.exe
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\FastColoredTextBox.dll
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.csprojResolveAssemblyReference.cache
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form1.resources
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form2.resources
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form3.resources
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Properties.Resources.resources
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.csproj.GenerateResource.Cache
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\Calendar_Email.pdb

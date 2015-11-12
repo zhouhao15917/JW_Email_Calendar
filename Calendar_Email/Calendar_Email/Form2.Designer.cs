@@ -31,20 +31,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmb_EmailFrom = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.userInfoEnter = new System.Windows.Forms.Button();
             this.userInfoCancel = new System.Windows.Forms.Button();
-            this.textBoxIUserID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_EmailSend = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tb_EmailTo_Show = new System.Windows.Forms.TextBox();
+            this.tb_EmailFrom_Show = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.bOpenAttachmentDialog = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.emailFrom = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -61,10 +64,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmb_EmailFrom);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.userInfoEnter);
             this.groupBox2.Controls.Add(this.userInfoCancel);
-            this.groupBox2.Controls.Add(this.textBoxIUserID);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.textBoxPassword);
             this.groupBox2.Location = new System.Drawing.Point(12, 55);
@@ -72,46 +75,49 @@
             this.groupBox2.Size = new System.Drawing.Size(380, 105);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Login";
+            this.groupBox2.Text = "Email Sender";
+            // 
+            // cmb_EmailFrom
+            // 
+            this.cmb_EmailFrom.FormattingEnabled = true;
+            this.cmb_EmailFrom.Location = new System.Drawing.Point(104, 25);
+            this.cmb_EmailFrom.Name = "cmb_EmailFrom";
+            this.cmb_EmailFrom.Size = new System.Drawing.Size(172, 24);
+            this.cmb_EmailFrom.TabIndex = 24;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(100, 14);
+            this.label3.Location = new System.Drawing.Point(20, 28);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.Size = new System.Drawing.Size(78, 17);
             this.label3.TabIndex = 8;
-            this.label3.Text = "User ID";
+            this.label3.Text = "Email From";
             // 
             // userInfoEnter
             // 
-            this.userInfoEnter.Location = new System.Drawing.Point(74, 64);
+            this.userInfoEnter.Location = new System.Drawing.Point(282, 25);
             this.userInfoEnter.Name = "userInfoEnter";
-            this.userInfoEnter.Size = new System.Drawing.Size(104, 24);
+            this.userInfoEnter.Size = new System.Drawing.Size(77, 24);
             this.userInfoEnter.TabIndex = 11;
             this.userInfoEnter.Text = "Enter";
             this.userInfoEnter.UseVisualStyleBackColor = true;
+            this.userInfoEnter.Click += new System.EventHandler(this.userInfoEnter_Click);
             // 
             // userInfoCancel
             // 
-            this.userInfoCancel.Location = new System.Drawing.Point(200, 61);
+            this.userInfoCancel.Location = new System.Drawing.Point(282, 61);
             this.userInfoCancel.Name = "userInfoCancel";
-            this.userInfoCancel.Size = new System.Drawing.Size(106, 24);
+            this.userInfoCancel.Size = new System.Drawing.Size(79, 24);
             this.userInfoCancel.TabIndex = 12;
             this.userInfoCancel.Text = "Clear";
             this.userInfoCancel.UseVisualStyleBackColor = true;
-            // 
-            // textBoxIUserID
-            // 
-            this.textBoxIUserID.Location = new System.Drawing.Point(74, 32);
-            this.textBoxIUserID.Name = "textBoxIUserID";
-            this.textBoxIUserID.Size = new System.Drawing.Size(106, 22);
-            this.textBoxIUserID.TabIndex = 6;
+            this.userInfoCancel.Click += new System.EventHandler(this.userInfoCancel_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(221, 15);
+            this.label4.Location = new System.Drawing.Point(20, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 17);
             this.label4.TabIndex = 9;
@@ -119,30 +125,76 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(200, 33);
+            this.textBoxPassword.Location = new System.Drawing.Point(104, 63);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(106, 22);
+            this.textBoxPassword.Size = new System.Drawing.Size(172, 22);
             this.textBoxPassword.TabIndex = 7;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_EmailSend);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.tb_EmailTo_Show);
+            this.groupBox3.Controls.Add(this.tb_EmailFrom_Show);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.bOpenAttachmentDialog);
-            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 257);
+            this.groupBox3.Location = new System.Drawing.Point(12, 178);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(380, 330);
+            this.groupBox3.Size = new System.Drawing.Size(380, 371);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Email Action";
             // 
+            // btn_EmailSend
+            // 
+            this.btn_EmailSend.Location = new System.Drawing.Point(144, 317);
+            this.btn_EmailSend.Name = "btn_EmailSend";
+            this.btn_EmailSend.Size = new System.Drawing.Size(89, 27);
+            this.btn_EmailSend.TabIndex = 9;
+            this.btn_EmailSend.Text = "Send Email";
+            this.btn_EmailSend.UseVisualStyleBackColor = true;
+            this.btn_EmailSend.Click += new System.EventHandler(this.btn_EmailSend_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 17);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Email To:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 17);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Email From:";
+            // 
+            // tb_EmailTo_Show
+            // 
+            this.tb_EmailTo_Show.Location = new System.Drawing.Point(91, 50);
+            this.tb_EmailTo_Show.Name = "tb_EmailTo_Show";
+            this.tb_EmailTo_Show.Size = new System.Drawing.Size(251, 22);
+            this.tb_EmailTo_Show.TabIndex = 7;
+            // 
+            // tb_EmailFrom_Show
+            // 
+            this.tb_EmailFrom_Show.Location = new System.Drawing.Point(91, 20);
+            this.tb_EmailFrom_Show.Name = "tb_EmailFrom_Show";
+            this.tb_EmailFrom_Show.Size = new System.Drawing.Size(251, 22);
+            this.tb_EmailFrom_Show.TabIndex = 6;
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(23, 48);
+            this.textBox1.Location = new System.Drawing.Point(23, 95);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(336, 22);
             this.textBox1.TabIndex = 1;
@@ -150,7 +202,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 88);
+            this.label2.Location = new System.Drawing.Point(20, 135);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(273, 17);
             this.label2.TabIndex = 4;
@@ -159,7 +211,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 28);
+            this.label1.Location = new System.Drawing.Point(20, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(213, 17);
             this.label1.TabIndex = 3;
@@ -167,44 +219,28 @@
             // 
             // bOpenAttachmentDialog
             // 
-            this.bOpenAttachmentDialog.Location = new System.Drawing.Point(23, 242);
+            this.bOpenAttachmentDialog.Location = new System.Drawing.Point(23, 289);
             this.bOpenAttachmentDialog.Name = "bOpenAttachmentDialog";
             this.bOpenAttachmentDialog.Size = new System.Drawing.Size(89, 27);
             this.bOpenAttachmentDialog.TabIndex = 5;
             this.bOpenAttachmentDialog.Text = "Attachment";
             this.bOpenAttachmentDialog.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(140, 279);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 34);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Send Email";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bOpenAttachmentDialog.Click += new System.EventHandler(this.bOpenAttachmentDialog_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(23, 108);
+            this.textBox2.Location = new System.Drawing.Point(23, 155);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(336, 128);
             this.textBox2.TabIndex = 2;
             // 
-            // emailFrom
-            // 
-            this.emailFrom.FormattingEnabled = true;
-            this.emailFrom.Location = new System.Drawing.Point(12, 176);
-            this.emailFrom.Name = "emailFrom";
-            this.emailFrom.Size = new System.Drawing.Size(121, 24);
-            this.emailFrom.TabIndex = 24;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 599);
-            this.Controls.Add(this.emailFrom);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(408, 561);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -228,7 +264,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button userInfoEnter;
         private System.Windows.Forms.Button userInfoCancel;
-        private System.Windows.Forms.TextBox textBoxIUserID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -236,9 +271,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bOpenAttachmentDialog;
-        private System.Windows.Forms.Button button2;
+       // private System.Windows.Forms.Button btn_SendEmail;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox emailFrom;
+        private System.Windows.Forms.ComboBox cmb_EmailFrom;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tb_EmailTo_Show;
+        private System.Windows.Forms.TextBox tb_EmailFrom_Show;
+        private System.Windows.Forms.Button btn_EmailSend;
 
     }
 }

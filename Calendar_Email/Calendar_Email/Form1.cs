@@ -21,7 +21,7 @@ namespace Calendar_Email
         public Form1()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hzhou\Documents\Visual Studio 2013\Projects\Calendar_Email\Calendar_Email\CalendarEmail.accdb;
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CalendarEmail.accdb;
 Persist Security Info=False;";  //@ take whole thing as a string.
         }
 
