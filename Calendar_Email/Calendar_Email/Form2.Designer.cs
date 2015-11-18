@@ -38,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.atchName = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.btn_EmailSend = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,8 +50,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bOpenAttachmentDialog = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.atchName = new System.Windows.Forms.Label();
+            this.btn_SetUpAccount = new System.Windows.Forms.Button();
+            this.lb_SetUpAccount = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -147,12 +149,30 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.bOpenAttachmentDialog);
             this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 178);
+            this.groupBox3.Location = new System.Drawing.Point(12, 210);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(380, 371);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Email Action";
+            // 
+            // atchName
+            // 
+            this.atchName.AutoSize = true;
+            this.atchName.Location = new System.Drawing.Point(127, 294);
+            this.atchName.Name = "atchName";
+            this.atchName.Size = new System.Drawing.Size(0, 17);
+            this.atchName.TabIndex = 11;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(25, 321);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(317, 17);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "NOTE: Size of the file can\'t be bigher than 16MB!";
             // 
             // btn_EmailSend
             // 
@@ -202,6 +222,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(336, 22);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "test";
             // 
             // label2
             // 
@@ -238,31 +259,35 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(336, 128);
             this.textBox2.TabIndex = 2;
+            this.textBox2.Text = "test";
             // 
-            // label8
+            // btn_SetUpAccount
             // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(25, 321);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(317, 17);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "NOTE: Size of the file can\'t be bigher than 16MB!";
+            this.btn_SetUpAccount.Location = new System.Drawing.Point(180, 176);
+            this.btn_SetUpAccount.Name = "btn_SetUpAccount";
+            this.btn_SetUpAccount.Size = new System.Drawing.Size(69, 28);
+            this.btn_SetUpAccount.TabIndex = 24;
+            this.btn_SetUpAccount.Text = "Setup";
+            this.btn_SetUpAccount.UseVisualStyleBackColor = true;
+            this.btn_SetUpAccount.Click += new System.EventHandler(this.btn_SetUpAccount_Click);
             // 
-            // atchName
+            // lb_SetUpAccount
             // 
-            this.atchName.AutoSize = true;
-            this.atchName.Location = new System.Drawing.Point(127, 294);
-            this.atchName.Name = "atchName";
-            this.atchName.Size = new System.Drawing.Size(0, 17);
-            this.atchName.TabIndex = 11;
+            this.lb_SetUpAccount.AutoSize = true;
+            this.lb_SetUpAccount.Location = new System.Drawing.Point(32, 182);
+            this.lb_SetUpAccount.Name = "lb_SetUpAccount";
+            this.lb_SetUpAccount.Size = new System.Drawing.Size(146, 17);
+            this.lb_SetUpAccount.TabIndex = 25;
+            this.lb_SetUpAccount.Text = "Set up Email Account:";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(408, 561);
+            this.ClientSize = new System.Drawing.Size(408, 593);
+            this.Controls.Add(this.lb_SetUpAccount);
+            this.Controls.Add(this.btn_SetUpAccount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -303,6 +328,8 @@
         private System.Windows.Forms.Button btn_EmailSend;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label atchName;
+        private System.Windows.Forms.Button btn_SetUpAccount;
+        private System.Windows.Forms.Label lb_SetUpAccount;
 
     }
 }

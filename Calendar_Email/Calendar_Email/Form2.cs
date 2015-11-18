@@ -25,9 +25,9 @@ namespace Calendar_Email
         private OleDbConnection connection = new OleDbConnection();
         
         //Start building up email system
-        MailMessage mail = new MailMessage();
+        private MailMessage mail = new MailMessage();
         //set up email server. For now it's for gmail(smtp). TODO: provide several options.
-        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        private SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
 
         public Form2()
@@ -35,7 +35,7 @@ namespace Calendar_Email
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\CalendarEmail.accdb;
 Persist Security Info=False;";  //@ take whole thing as a string.
-            this.FormClosed += new FormClosedEventHandler(Form2_FormClosed);
+            this.FormClosing += new FormClosingEventHandler(Form2_FormClosing);
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -77,7 +77,7 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             //initiate Email From textbox.
             tb_EmailFrom_Show.ReadOnly = true;
         }
-        void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
             if (this.DialogResult == DialogResult.Cancel)
@@ -86,6 +86,9 @@ Persist Security Info=False;";  //@ take whole thing as a string.
                 {
                     case DialogResult.Yes:
                         Application.Exit();
+                        break;
+                    case DialogResult.No:
+                        e.Cancel = true;
                         break;
                     default:
                         break;
@@ -102,7 +105,7 @@ Persist Security Info=False;";  //@ take whole thing as a string.
 
             try
             {
-                SmtpServer.Send(mail);                //email sender is the same as user 
+//                SmtpServer.Send(mail);                //email sender is the same as user 
                 // TODO: emailfrom can be different from user ID.
                 iMailFrom = iUserID;
                 //clear the comb box and textbox.
@@ -192,6 +195,14 @@ Persist Security Info=False;";  //@ take whole thing as a string.
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btn_SetUpAccount_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form4 f4 = new Form4();
+            //show form2
+            f4.ShowDialog();
         }
     }
 }

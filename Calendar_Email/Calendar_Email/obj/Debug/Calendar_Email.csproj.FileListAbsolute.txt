@@ -24,3 +24,4 @@ C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.
 C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Properties.Resources.resources
 C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.csproj.GenerateResource.Cache
 C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\bin\Debug\Calendar_Email.pdb
+C:\Git\JW_Email_Calendar\Calendar_Email\Calendar_Email\obj\Debug\Calendar_Email.Form4.resources
